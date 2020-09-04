@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div v-for="(note, index) in noteObjectArray" :key="note.id">
-      <Note v-on:delete-note="deleteNote(index)" v-model="content">
+    <div class = "note" v-for="(note, index) in noteObjectArray" :key="note.id" :id="'note_'+index">
+      <Note v-on:delete-note="deleteNote(index)" :id="index" :position="noteObjectArray[index].position">
         <template slot="header">
           Last modified: {{ formattedDate(note.date) }}
         </template>
@@ -21,19 +21,22 @@ export default {
   },
   data(){
     return{
-      noteObjectArray: [],
-      content: 'Please insert text',
+      noteObjectArray: JSON.parse(localStorage.getItem('noteArray')),
+      content: '',
     }
   },
   methods:{
     addNote(){
       var newNote = {};
-      if(this.noteObjectArray.length ==0) newNote = {id: 0, date: Date.now(), text:''};
-      else newNote = {id: this.noteObjectArray.length, date: Date.now(), text:''};
+      if(this.noteObjectArray.length ==0) newNote = {id: 0, date: Date.now(), text:'Please enter the note text', position: ['200px','350px']};
+      else newNote = {id: this.noteObjectArray.length, date: Date.now(), text:'Please enter the note text', position: ['200px','350px']};
       this.noteObjectArray.push(newNote);
+      localStorage.setItem('noteArray', JSON.stringify(this.noteObjectArray));
     },
     deleteNote(index){
-      this.noteObjectArray.splice(index, 1);
+      var noteObject = JSON.parse(localStorage.getItem('noteArray'));
+      noteObject.splice(index, 1);
+      localStorage.setItem('noteArray', JSON.stringify(noteObject));
     },
     formattedDate(date){
       var fullDate = new Date(date);
@@ -49,8 +52,9 @@ export default {
   
       var newDateString = year+'/'+month +'/'+day+' '+hour+":"+min;
       return newDateString;
-    }
+    },
   },
+
   // created: function () {
   //   window.addEventListener('click', event => {
   //     if (.contains(e.target)){
