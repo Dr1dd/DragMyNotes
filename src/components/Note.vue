@@ -84,7 +84,8 @@ export default {
       });
       if(!this.$refs.draggableContainer.classList.contains('recent'))
         this.$refs.draggableContainer.classList.add('recent');
-    }
+    },
+
   }
 }
 </script>

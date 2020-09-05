@@ -34,6 +34,7 @@ export default {
       localStorage.setItem('noteArray', JSON.stringify(this.noteObjectArray));
     },
     deleteNote(index){
+      this.noteObjectArray.splice(index, 1);
       var noteObject = JSON.parse(localStorage.getItem('noteArray'));
       noteObject.splice(index, 1);
       localStorage.setItem('noteArray', JSON.stringify(noteObject));
@@ -55,22 +56,6 @@ export default {
     },
   },
 
-  // created: function () {
-  //   window.addEventListener('click', event => {
-  //     if (.contains(e.target)){
-  //       // Clicked in box
-  //     } else{
-  //       // Clicked outside the box
-  //     }
-  //   });
-
-    
-  // },
-
-  // destroyed: function () {
-  //   window.removeEventListener('click', this.keyDown)
-
-  // }
 
 }
 </script>
