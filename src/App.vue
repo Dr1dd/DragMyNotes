@@ -84,6 +84,12 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+html{
+  background-attachment: fixed;
+  height: 100%;
+  background-size: cover;
+  background: linear-gradient(41deg, rgba(247,247,227,1) 0%, rgba(246,246,240,1) 48%, rgba(255,249,217,1) 100%);
+}
 span{
   outline: none;
   border: none;
@@ -91,7 +97,7 @@ span{
   height:100%;
   line-height: 117%;
   width: 100%;
-  font-size: 0.8em;
+  font-size: 1em;
   color: gray;
   
 
